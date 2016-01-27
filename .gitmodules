@@ -1,0 +1,3 @@
+[submodule "volttron-source"]
+	path = volttron-source
+	url = git@github.com:VOLTTRON/volttron.git
