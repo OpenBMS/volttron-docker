@@ -10,4 +10,16 @@ RUN apt-get upgrade -y
 RUN apt-get install build-essential python-dev openssl libssl-dev libevent-dev -y
 RUN apt-get install libsodium-dev -y
 
-ADD volttron-source /volttron
+RUN useradd -ms /bin/bash volttron
+
+ADD volttron-source /home/volttron/volttron-source
+RUN chown -R volttron:volttron /home/volttron/volttron-source
+
+USER volttron
+ENV HOME /home/volttron
+WORKDIR /home/volttron
+
+RUN python2.7 /home/volttron/volttron-source/bootstrap.py
+RUN echo "source /home/volttron/volttron-source/env/bin/activate" >> /home/volttron/.profile
+RUN echo "source /home/volttron/volttron-source/env/bin/activate" >> /home/volttron/.bashrc
+
