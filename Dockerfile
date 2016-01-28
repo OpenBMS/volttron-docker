@@ -30,3 +30,4 @@ RUN python2.7 /home/volttron/volttron-source/bootstrap.py
 RUN echo "source /home/volttron/volttron-source/env/bin/activate" >> /home/volttron/.profile
 RUN echo "source /home/volttron/volttron-source/env/bin/activate" >> /home/volttron/.bashrc
 
+USER root
