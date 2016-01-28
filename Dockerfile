@@ -15,6 +15,13 @@ RUN useradd -ms /bin/bash volttron
 ADD volttron-source /home/volttron/volttron-source
 RUN chown -R volttron:volttron /home/volttron/volttron-source
 
+RUN adduser volttron sudo
+
+# Enable passwordless sudo for users under the "sudo" group
+RUN sed -i.bkp -e \
+      's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
+      /etc/sudoers
+
 USER volttron
 ENV HOME /home/volttron
 WORKDIR /home/volttron
